@@ -1,11 +1,16 @@
 <template>
-  <div class="index container">
+  <div class="disks container">
     <div class="card" v-for="disk in disks" :key="disk.id">
       <div class="card-content">
         <h2 class="indigo-text">{{disk.title}}</h2>
         <h4 class="indigo-text">{{disk.artist}}</h4>
       </div>
     </div>
+    <a href="" class="add-disk-btn btn-floating btn-large pink">
+        <router-link :to="{ name: 'AddDisk' }">
+          <i class="material-icons">add</i>
+        </router-link>
+      </a>
   </div>
 </template>
 
@@ -32,3 +37,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.disks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+  margin-top: 60px;
+}
+.add-disk-btn {
+  margin-bottom: 30px;
+}
+</style>

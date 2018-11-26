@@ -1,9 +1,8 @@
 <template>
   <div class="disks container">
-    <div class="card" v-for="disk in disks" :key="disk.id">
-      <div class="card-content">
-        <h2 class="indigo-text">{{disk.title}}</h2>
-        <h4 class="indigo-text">{{disk.artist}}</h4>
+    <div class="disk-cards-container">
+      <div class="card" v-for="disk in disks" :key="disk.id">
+        <DiskCard :title='disk.title' :artist='disk.artist'/>
       </div>
     </div>
     <a href="" class="add-disk-btn btn-floating btn-large pink">
@@ -15,17 +14,20 @@
 </template>
 
 <script>
+import DiskCard from '@/components/DiskCard'
 import db from '@/firebase/init'
 
 export default {
   name: 'Disks',
+  components: {
+    DiskCard
+  },
   data() {
     return {
       disks: []
     }
   },
   created() {
-    console.log('Hello')
     db.collection('disks').get()
       .then(collection => {
         collection.forEach(document => {
@@ -39,9 +41,9 @@ export default {
 </script>
 
 <style scoped>
-.disks {
+.disk-cards-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
   margin-top: 60px;
 }

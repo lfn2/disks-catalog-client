@@ -5,6 +5,9 @@
         <router-link :to="{name: 'Index'}">
           <span class="nav-title">Disks Catalog</span>
         </router-link>
+        <router-link :to="{name: 'Disks'}">
+          <span class="nav-disks-tab">Disks</span>
+        </router-link>
       </div>
     </nav>
   </div>
@@ -19,5 +22,8 @@ export default {
 <style scoped>
   nav {
     padding: 0 20px;
+  }
+  .nav-disks-tab {
+    margin-left: 50px;
   }
 </style>

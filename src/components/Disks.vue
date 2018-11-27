@@ -5,7 +5,7 @@
         <DiskCard :title='disk.title' :artist='disk.artist'/>
       </div>
     </div>
-    <AddDiskForm/>
+    <AddDiskForm @closeForm="getDisks"/>
   </div>
 </template>
 

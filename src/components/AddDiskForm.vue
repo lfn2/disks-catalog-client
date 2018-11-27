@@ -39,7 +39,7 @@ export default {
         artist: this.artist,
       }).then(() => {
         this.close()
-        this.$route.go()
+        this.$emit("closeForm")
       })
     },
     close() {

@@ -5,37 +5,40 @@
         <DiskCard :title='disk.title' :artist='disk.artist'/>
       </div>
     </div>
-    <a href="" class="add-disk-btn btn-floating btn-large pink">
-        <router-link :to="{ name: 'AddDisk' }">
-          <i class="material-icons">add</i>
-        </router-link>
-      </a>
+    <AddDiskForm/>
   </div>
 </template>
 
 <script>
-import DiskCard from '@/components/DiskCard'
 import db from '@/firebase/init'
+import DiskCard from '@/components/DiskCard'
+import AddDiskForm from '@/components/AddDiskForm'
 
 export default {
   name: 'Disks',
   components: {
-    DiskCard
+    DiskCard,
+    AddDiskForm
   },
   data() {
     return {
       disks: []
     }
   },
-  created() {
-    db.collection('disks').get()
-      .then(collection => {
-        collection.forEach(document => {
-          let disk = document.data()
-          disk.id = document.id
-          this.disks.push(disk)
-        })
+  methods: {
+    getDisks() {
+      db.collection('disks').get()
+        .then(collection => {
+          collection.forEach(document => {
+            let disk = document.data()
+            disk.id = document.id
+            this.disks.push(disk)
+          })
       })
+    }
+  },
+  created() {
+    this.getDisks()
   }
 }
 </script>
@@ -46,8 +49,5 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
   margin-top: 60px;
-}
-.add-disk-btn {
-  margin-bottom: 30px;
 }
 </style>

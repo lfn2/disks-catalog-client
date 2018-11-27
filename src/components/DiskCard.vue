@@ -1,7 +1,13 @@
 <template>
-  <div class="card-content">
-    <h2 class="indigo-text">{{title}}</h2>
-    <h4 class="indigo-text">{{artist}}</h4>
+  <div class="card">
+    <v-card color="primary">
+      <v-card-title>
+        <h2 class="white--text">{{title}}</h2>
+      </v-card-title>
+      <v-card-text>
+        <h4 class="white--text">{{artist}}</h4>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -25,5 +31,6 @@ h2 {
 }
 h4 {
   font-weight: 300;
+  font-size: 1.2em;
 }
 </style>

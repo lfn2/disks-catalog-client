@@ -37,9 +37,13 @@ export default {
       db.collection('disks').add({
         title: this.title,
         artist: this.artist,
-      }).then(() => {
+      }).then(doc => {
         this.close()
-        this.$emit("closeForm")
+        this.$emit("newDisk", {
+          id: doc.id,
+          title: this.title,
+          artist: this.artist
+        })
       })
     },
     close() {

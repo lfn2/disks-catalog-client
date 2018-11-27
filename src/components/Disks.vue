@@ -5,7 +5,7 @@
         <DiskCard :title='disk.title' :artist='disk.artist'/>
       </div>
     </div>
-    <AddDiskForm @closeForm="getDisks"/>
+    <AddDiskForm @newDisk="addDisk"/>
   </div>
 </template>
 
@@ -35,6 +35,9 @@ export default {
             this.disks.push(disk)
           })
       })
+    },
+    addDisk(disk) {
+      this.disks.push(disk)
     }
   },
   created() {

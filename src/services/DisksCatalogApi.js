@@ -19,5 +19,10 @@ export default {
   async getCollections() {
     let collections = await axios.get('/collections');
     return collections.data;
+  },
+  async createCollection(params) {
+    console.log(params);
+    let collection = await axios.post('/collections', params);
+    return collection.data;
   }
 }

@@ -5,17 +5,20 @@
         <CollectionCard :collection="collection"/>
       </div>
     </div>
+    <CreateCollectionForm @createCollection="createCollection"/>
   </div>
 </template>
 
 <script>
 import DisksCatalogApi from '@/services/DisksCatalogApi'
 import CollectionCard from './CollectionCard'
+import CreateCollectionForm from './CreateCollectionForm'
 
 export default {
   name: 'Collections',
   components: {
-    CollectionCard
+    CollectionCard,
+    CreateCollectionForm
   },
   data() {
     return {
@@ -29,6 +32,11 @@ export default {
       collections.forEach(collection => {
         this.addCollection(collection);
       });
+    },
+    async createCollection(params) {
+      let collection = await DisksCatalogApi.createCollection(params);
+
+      this.collections.push(collection);
     },
     addCollection(collection) {
       this.collections.push(collection);

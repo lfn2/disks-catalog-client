@@ -22,3 +22,10 @@ export default {
   name: 'Navbar'
 }
 </script>
+
+<style scoped>
+.navbar-title {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+</style>

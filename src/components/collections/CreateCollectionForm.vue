@@ -5,11 +5,10 @@
     </v-btn>
     <v-card>
       <v-card-title>
-        <span class="headline">New Disk</span>
+        <span class="headline">New Collection</span>
       </v-card-title>
       <v-card-text>
-        <v-text-field v-model="title" label="Title*" required></v-text-field>
-        <v-text-field v-model="artist" label="Artist*" required></v-text-field>
+        <v-text-field v-model="name" label="Name*" required></v-text-field>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -22,19 +21,17 @@
 
 <script>
 export default {
-  Name: 'CreateDiskForm',
+  Name: 'CreateCollectionForm',
   data() {
     return {
       dialog: false,
-      title: null,
-      artist: null
+      name: null,
     }
   },
   methods: {
     async save() {
-      this.$emit("createDisk", {
-        title: this.title,
-        artist: this.artist
+      this.$emit("createCollection", {
+        name: this.name
       });
       this.close();
     },
@@ -45,8 +42,7 @@ export default {
   watch: {
     dialog(open) {
       if (!open) {
-        this.title = null;
-        this.artist = null;
+        this.name = null;
       }
     }
   }

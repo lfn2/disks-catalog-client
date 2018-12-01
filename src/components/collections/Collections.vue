@@ -27,11 +27,7 @@ export default {
   },
   methods: {
     async getCollections() {
-      let collections = await DisksCatalogApi.getCollections();
-
-      collections.forEach(collection => {
-        this.addCollection(collection);
-      });
+      this.collections = await DisksCatalogApi.getCollections();
     },
     async createCollection(params) {
       let collection = await DisksCatalogApi.createCollection(params);

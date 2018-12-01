@@ -8,6 +8,7 @@
       <v-card-text>
         <h4 class="white--text">{{disk.artist}}</h4>
         <EditDiskForm class="icon-edit" :disk="disk" @editDisk="editDisk"/>
+        <AddToCollectionForm class="icon-add"/>
       </v-card-text>
     </v-card>
   </div>
@@ -15,11 +16,13 @@
 
 <script>
 import EditDiskForm from './EditDiskForm'
+import AddToCollectionForm from './AddToCollectionForm'
 
 export default {
   name: 'DiskCard',
   components: {
-    EditDiskForm
+    EditDiskForm,
+    AddToCollectionForm
   },
   props: {
     disk: Object
@@ -54,6 +57,11 @@ h4 {
 .icon-edit {
   position: absolute;
   right: 15px;
+  bottom: 12px;
+}
+.icon-add {
+  position: absolute;
+  right: 50px;
   bottom: 12px;
 }
 </style>

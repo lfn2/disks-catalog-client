@@ -5,13 +5,13 @@
         <DiskCard :disk='disk' @deleteDisk="deleteDisk" @editDisk="editDisk"/>
       </div>
     </div>
-    <AddDiskForm @newDisk="addDisk"/>
+    <CreateDiskForm @createDisk="createDisk"/>
   </div>
 </template>
 
 <script>
 import DiskCard from './DiskCard'
-import AddDiskForm from './AddDiskForm'
+import CreateDiskForm from './CreateDiskForm'
 import DisksCatalogApi from '@/services/DisksCatalogApi'
 import Vue from 'vue'
 
@@ -19,7 +19,7 @@ export default {
   name: 'Disks',
   components: {
     DiskCard,
-    AddDiskForm
+    CreateDiskForm
   },
   data() {
     return {
@@ -33,6 +33,11 @@ export default {
       disks.forEach(disk => {
         this.addDisk(disk);
       });
+    },
+    async createDisk(params) {
+      let disk = await DisksCatalogApi.createDisk(params);
+
+      this.addDisk(disk);
     },
     async deleteDisk(id) {
       await DisksCatalogApi.deleteDisk(id);

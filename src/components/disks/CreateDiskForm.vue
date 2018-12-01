@@ -21,10 +21,8 @@
 </template>
 
 <script>
-import DisksCatalogApi from '@/services/DisksCatalogApi'
-
 export default {
-  Name: 'AddDiskForm',
+  Name: 'CreateDiskForm',
   data() {
     return {
       dialog: false,
@@ -34,13 +32,11 @@ export default {
   },
   methods: {
     async save() {
-      let disk = await DisksCatalogApi.createDisk({
+      this.close();
+      this.$emit("createDisk", {
         title: this.title,
         artist: this.artist
       });
-
-      this.close();
-      this.$emit("newDisk", disk);
     },
     close() {
       this.dialog = false;

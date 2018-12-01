@@ -1,3 +1,4 @@
+<script src="http://localhost:8098"></script>
 <template>
   <div class="disks container">
     <div class="disk-cards-container">
@@ -10,9 +11,9 @@
 </template>
 
 <script>
-import db from '@/firebase/init'
 import DiskCard from '@/components/DiskCard'
 import AddDiskForm from '@/components/AddDiskForm'
+import DisksCatalogApi from '@/services/DisksCatalogApi'
 
 export default {
   name: 'Disks',
@@ -26,15 +27,13 @@ export default {
     }
   },
   methods: {
-    getDisks() {
-      db.collection('disks').get()
-        .then(collection => {
-          collection.forEach(document => {
-            let disk = document.data()
-            disk.id = document.id
-            this.disks.push(disk)
-          })
-      })
+    async getDisks() {
+      let disks =  await DisksCatalogApi.getDisks()
+      console.log(disks)
+      console.log(process.env.DISKS_CATALOG_API_URL)
+      disks.forEach(disk => {
+        this.addDisk(disk)
+      });
     },
     addDisk(disk) {
       this.disks.push(disk)

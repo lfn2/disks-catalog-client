@@ -6,6 +6,9 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import colors from 'vuetify/es5/util/colors'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 Vue.use(Vuetify, {
   theme: {

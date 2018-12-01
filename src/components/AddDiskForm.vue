@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import db from '@/firebase/init'
+import DisksCatalogApi from '@/services/DisksCatalogApi'
 
 export default {
   Name: 'AddDiskForm',
@@ -33,18 +33,14 @@ export default {
     }
   },
   methods: {
-    save() {
-      db.collection('disks').add({
+    async save() {
+      let disk = await DisksCatalogApi.createDisk({
         title: this.title,
-        artist: this.artist,
-      }).then(doc => {
-        this.close()
-        this.$emit("newDisk", {
-          id: doc.id,
-          title: this.title,
-          artist: this.artist
-        })
-      })
+        artist: this.artist
+      });
+
+      this.close();
+      this.$emit("newDisk", disk)
     },
     close() {
       this.dialog = false

@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" max-width="500px">
-    <v-btn slot="activator" color="secondary" dark right fab absolute>
+    <v-btn slot="activator" color="secondary" dark right top fab absolute>
       <v-icon>add</v-icon>
     </v-btn>
     <v-card>

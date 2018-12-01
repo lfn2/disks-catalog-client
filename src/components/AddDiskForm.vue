@@ -40,10 +40,18 @@ export default {
       });
 
       this.close();
-      this.$emit("newDisk", disk)
+      this.$emit("newDisk", disk);
     },
     close() {
-      this.dialog = false
+      this.dialog = false;
+    }
+  },
+  watch: {
+    dialog(val) {
+      if (!val) {
+        this.title = null;
+        this.artist = null;
+      }
     }
   }
 }

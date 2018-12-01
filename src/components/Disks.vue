@@ -3,7 +3,7 @@
   <div class="disks container">
     <div class="disk-cards-container">
       <div class="card" v-for="disk in disks" :key="disk.id">
-        <DiskCard :disk='disk' @deleteDisk="deleteDisk"/>
+        <DiskCard :disk='disk' @deleteDisk="deleteDisk" @editDisk="editDisk"/>
       </div>
     </div>
     <AddDiskForm @newDisk="addDisk"/>
@@ -14,6 +14,7 @@
 import DiskCard from '@/components/DiskCard'
 import AddDiskForm from '@/components/AddDiskForm'
 import DisksCatalogApi from '@/services/DisksCatalogApi'
+import Vue from 'vue'
 
 export default {
   name: 'Disks',
@@ -28,23 +29,31 @@ export default {
   },
   methods: {
     async getDisks() {
-      let disks =  await DisksCatalogApi.getDisks()
+      let disks =  await DisksCatalogApi.getDisks();
+
       disks.forEach(disk => {
-        this.addDisk(disk)
+        this.addDisk(disk);
       });
     },
     async deleteDisk(id) {
-      await DisksCatalogApi.deleteDisk(id)
+      await DisksCatalogApi.deleteDisk(id);
+
       this.disks = this.disks.filter(disk => {
-        disk.id == id;
+        return disk.id != id;
       })
     },
+    async editDisk(disk) {
+      let editedDisk = await DisksCatalogApi.editDisk(disk);
+      let diskIndex = this.disks.findIndex(disk => disk.id === editedDisk.id);
+
+      Vue.set(this.disks, diskIndex, editedDisk);
+    },
     addDisk(disk) {
-      this.disks.push(disk)
+      this.disks.push(disk);
     }
   },
   created() {
-    this.getDisks()
+    this.getDisks();
   }
 }
 </script>

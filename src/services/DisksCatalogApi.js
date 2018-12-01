@@ -11,5 +11,9 @@ export default {
   },
   async deleteDisk(id) {
     return await axios.delete(`/disks/${id}`);
+  },
+  async editDisk(disk) {
+    let editedDisk = await axios.patch(`/disks/${disk.id}`, disk);
+    return editedDisk.data;
   }
 }

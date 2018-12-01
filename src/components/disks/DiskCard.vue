@@ -3,7 +3,15 @@
     <v-card color="primary">
       <v-card-title>
         <h2 class="white--text">{{disk.title}}</h2>
-        <v-icon class="icon-delete" @click="deleteDisk">delete</v-icon>
+        <v-spacer></v-spacer>
+        <v-menu>
+          <v-btn slot="activator" dark icon>
+            <v-icon>more_vert</v-icon>
+          </v-btn>
+          <v-list>
+            <v-list-tile @click="deleteDisk">delete</v-list-tile>
+          </v-list>
+        </v-menu>
       </v-card-title>
       <v-card-text>
         <h4 class="white--text">{{disk.artist}}</h4>
@@ -49,10 +57,6 @@ h2 {
 h4 {
   font-weight: 300;
   font-size: 1.2em;
-}
-.icon-delete {
-  position: absolute;
-  right: 15px;
 }
 .icon-edit {
   position: absolute;

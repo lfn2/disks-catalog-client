@@ -28,11 +28,7 @@ export default {
   },
   methods: {
     async getDisks() {
-      let disks =  await DisksCatalogApi.getDisks();
-
-      disks.forEach(disk => {
-        this.addDisk(disk);
-      });
+      this.disks =  await DisksCatalogApi.getDisks();
     },
     async createDisk(params) {
       let disk = await DisksCatalogApi.createDisk(params);

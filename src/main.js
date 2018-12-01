@@ -7,6 +7,7 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import colors from 'vuetify/es5/util/colors'
 import axios from 'axios'
+import store from './store'
 
 axios.defaults.baseURL = 'http://localhost:3000/api';
 
@@ -16,13 +17,14 @@ Vue.use(Vuetify, {
     "secondary": colors.pink.base,
     "accent": colors.yellow.base,
   }
-})
-Vue.config.productionTip = false
+});
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
-})
+});

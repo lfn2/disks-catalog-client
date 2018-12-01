@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default {
-  async getDisks() {
+  async getAllDisks() {
     let response = await axios.get('/disks');
     return response.data;
   },

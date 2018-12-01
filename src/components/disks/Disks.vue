@@ -14,21 +14,21 @@ import DiskCard from './DiskCard'
 import CreateDiskForm from './CreateDiskForm'
 import DisksCatalogApi from '@/services/DisksCatalogApi'
 import Vue from 'vue'
+import { mapState, mapActions } from 'vuex'
 
 export default {
+
   name: 'Disks',
   components: {
     DiskCard,
     CreateDiskForm
   },
-  data() {
-    return {
-      disks: []
-    }
-  },
+  computed: mapState({
+    disks: state => state.disks.all
+  }),
   methods: {
     async getDisks() {
-      this.disks =  await DisksCatalogApi.getDisks();
+      this.$store.dispatch('disks/getAll');
     },
     async createDisk(params) {
       let disk = await DisksCatalogApi.createDisk(params);

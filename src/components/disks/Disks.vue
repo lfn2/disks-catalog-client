@@ -17,7 +17,6 @@ import Vue from 'vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-
   name: 'Disks',
   components: {
     DiskCard,
@@ -26,34 +25,14 @@ export default {
   computed: mapState({
     disks: state => state.disks.all
   }),
-  methods: {
-    async getDisks() {
-      this.$store.dispatch('disks/getAll');
-    },
-    async createDisk(params) {
-      let disk = await DisksCatalogApi.createDisk(params);
-
-      this.addDisk(disk);
-    },
-    async deleteDisk(id) {
-      await DisksCatalogApi.deleteDisk(id);
-
-      this.disks = this.disks.filter(disk => {
-        return disk.id != id;
-      })
-    },
-    async editDisk(disk) {
-      let editedDisk = await DisksCatalogApi.editDisk(disk);
-      let diskIndex = this.disks.findIndex(disk => disk.id === editedDisk.id);
-
-      Vue.set(this.disks, diskIndex, editedDisk);
-    },
-    addDisk(disk) {
-      this.disks.push(disk);
-    }
-  },
+  methods: mapActions('disks', [
+    'getAll',
+    'createDisk',
+    'deleteDisk',
+    'editDisk'
+  ]),
   created() {
-    this.getDisks();
+    this.getAll();
   }
 }
 </script>

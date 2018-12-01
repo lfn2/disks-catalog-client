@@ -2,10 +2,11 @@
   <div class="card">
     <v-card color="primary">
       <v-card-title>
-        <h2 class="white--text">{{title}}</h2>
+        <v-icon class="icon-delete" @click="deleteDisk">delete</v-icon>
+        <h2 class="white--text">{{disk.title}}</h2>
       </v-card-title>
       <v-card-text>
-        <h4 class="white--text">{{artist}}</h4>
+        <h4 class="white--text">{{disk.artist}}</h4>
       </v-card-text>
     </v-card>
   </div>
@@ -15,11 +16,15 @@
 export default {
   name: 'DiskCard',
   props: {
-    title: String,
-    artist: String
+    disk: Object
   },
   data() {
     return {
+    }
+  },
+  methods: {
+    deleteDisk() {
+      this.$emit("deleteDisk", this.disk.id)
     }
   }
 }
@@ -32,5 +37,9 @@ h2 {
 h4 {
   font-weight: 300;
   font-size: 1.2em;
+}
+.icon-delete {
+  position: absolute;
+  right: 15px;
 }
 </style>

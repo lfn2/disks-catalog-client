@@ -8,5 +8,8 @@ export default {
   async createDisk(params) {
     let disk = await axios.post('/disks', params);
     return disk.data;
+  },
+  async deleteDisk(id) {
+    return await axios.delete(`/disks/${id}`);
   }
 }

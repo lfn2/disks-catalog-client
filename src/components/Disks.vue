@@ -3,7 +3,7 @@
   <div class="disks container">
     <div class="disk-cards-container">
       <div class="card" v-for="disk in disks" :key="disk.id">
-        <DiskCard :title='disk.title' :artist='disk.artist'/>
+        <DiskCard :disk='disk' @deleteDisk="deleteDisk"/>
       </div>
     </div>
     <AddDiskForm @newDisk="addDisk"/>
@@ -29,11 +29,15 @@ export default {
   methods: {
     async getDisks() {
       let disks =  await DisksCatalogApi.getDisks()
-      console.log(disks)
-      console.log(process.env.DISKS_CATALOG_API_URL)
       disks.forEach(disk => {
         this.addDisk(disk)
       });
+    },
+    async deleteDisk(id) {
+      await DisksCatalogApi.deleteDisk(id)
+      this.disks = this.disks.filter(disk => {
+        disk.id == id;
+      })
     },
     addDisk(disk) {
       this.disks.push(disk)

@@ -9,6 +9,15 @@
       >
         <v-card-title>
           <h2 class="white--text">{{collection.name}}</h2>
+          <v-spacer></v-spacer>
+          <v-menu>
+            <v-btn slot="activator" dark icon>
+              <v-icon>more_vert</v-icon>
+            </v-btn>
+            <v-list>
+              <v-list-tile @click="deleteCollection">delete</v-list-tile>
+            </v-list>
+          </v-menu>
         </v-card-title>
       </v-card>
     </v-hover>
@@ -23,6 +32,11 @@ export default {
   },
   data() {
     return {
+    }
+  },
+  methods: {
+    deleteCollection() {
+      this.$emit('deleteCollection', this.collection.id)
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="collections container">
     <div class="collection-cards-container">
       <div class="card" v-for="collection in collections" :key="collection.id">
-        <CollectionCard :collection="collection"/>
+        <CollectionCard :collection="collection" @deleteCollection="deleteCollection"/>
       </div>
     </div>
     <CreateCollectionForm @createCollection="createCollection"/>
@@ -33,6 +33,13 @@ export default {
       let collection = await DisksCatalogApi.createCollection(params);
 
       this.collections.push(collection);
+    },
+    async deleteCollection(id) {
+      await DisksCatalogApi.deleteCollection(id);
+
+      this.collections = this.collections.filter(collection => {
+        return collection.id != id;
+      })
     },
     addCollection(collection) {
       this.collections.push(collection);

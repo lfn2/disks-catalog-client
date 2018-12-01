@@ -24,5 +24,11 @@ export default {
     console.log(params);
     let collection = await axios.post('/collections', params);
     return collection.data;
+  },
+  async addDiskToCollection(diskId, collectionIds) {
+    return await axios.post(`/disks/${diskId}/addToCollections`, collectionIds);
+  },
+  async deleteCollection(id) {
+    return await axios.delete(`/collections/${id}`);
   }
 }

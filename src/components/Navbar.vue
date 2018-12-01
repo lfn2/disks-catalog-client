@@ -10,6 +10,7 @@
       >
         <v-tabs-slider color="accent"></v-tabs-slider>
 
+        <v-tab :to="{name: 'Collections'}">Collections</v-tab>
         <v-tab :to="{name: 'Disks'}">Disks</v-tab>
       </v-tabs>
     </v-toolbar>

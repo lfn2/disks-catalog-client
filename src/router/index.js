@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/Index'
 import Disks from '@/components/Disks'
+import Collections from '@/components/Collections'
 
 Vue.use(Router)
 
@@ -10,8 +10,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Index',
-      component: Index
+      redirect: '/collections'
+    },
+    {
+      path: '/collections',
+      name: 'Collections',
+      component: Collections
     },
     {
       path: '/disks',

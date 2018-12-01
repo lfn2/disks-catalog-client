@@ -1,4 +1,3 @@
-<script src="http://localhost:8098"></script>
 <template>
   <div class="disks container">
     <div class="disk-cards-container">

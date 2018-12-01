@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import EditDiskForm from '@/components/EditDiskForm'
+import EditDiskForm from './EditDiskForm'
 
 export default {
   name: 'DiskCard',

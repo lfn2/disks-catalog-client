@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Disks from '@/components/Disks'
-import Collections from '@/components/Collections'
+import Disks from '@/components/disks/Disks'
+import Collections from '@/components/collections/Collections'
 
 Vue.use(Router)
 

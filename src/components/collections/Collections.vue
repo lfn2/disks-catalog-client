@@ -10,7 +10,7 @@
 
 <script>
 import DisksCatalogApi from '@/services/DisksCatalogApi'
-import CollectionCard from '@/components/CollectionCard'
+import CollectionCard from './CollectionCard'
 
 export default {
   name: 'Collections',

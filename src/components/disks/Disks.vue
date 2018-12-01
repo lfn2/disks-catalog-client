@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import DiskCard from '@/components/DiskCard'
-import AddDiskForm from '@/components/AddDiskForm'
+import DiskCard from './DiskCard'
+import AddDiskForm from './AddDiskForm'
 import DisksCatalogApi from '@/services/DisksCatalogApi'
 import Vue from 'vue'
 

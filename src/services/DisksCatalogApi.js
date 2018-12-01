@@ -15,5 +15,9 @@ export default {
   async editDisk(disk) {
     let editedDisk = await axios.patch(`/disks/${disk.id}`, disk);
     return editedDisk.data;
+  },
+  async getCollections() {
+    let collections = await axios.get('/collections');
+    return collections.data;
   }
 }

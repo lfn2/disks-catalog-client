@@ -15,7 +15,6 @@
 
 <script>
 import EditDiskForm from '@/components/EditDiskForm'
-import DisksCatalogApi from '@/services/DisksCatalogApi'
 
 export default {
   name: 'DiskCard',

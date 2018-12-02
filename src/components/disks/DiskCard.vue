@@ -9,13 +9,18 @@
             <v-icon>more_vert</v-icon>
           </v-btn>
           <v-list>
+            <v-list-tile @click="openEditDialog">edit</v-list-tile>
             <v-list-tile @click="deleteDisk">delete</v-list-tile>
           </v-list>
         </v-menu>
       </v-card-title>
       <v-card-text>
         <h4 class="white--text">{{disk.artist}}</h4>
-        <EditDiskForm class="icon-edit" :disk="disk" @editDisk="editDisk"/>
+        <EditDiskForm
+          :dialog="dialog"
+          :disk="disk"
+          @editDisk="editDisk"
+          @closeEditDialog="closeEditDialog"/>
         <AddToCollectionForm class="icon-add"/>
       </v-card-text>
     </v-card>
@@ -37,6 +42,7 @@ export default {
   },
   data() {
     return {
+      dialog: false
     }
   },
   methods: {
@@ -45,6 +51,12 @@ export default {
     },
     async editDisk(disk) {
       this.$emit("editDisk", disk);
+    },
+    openEditDialog() {
+      this.dialog = true;
+    },
+    closeEditDialog() {
+      this.dialog = false;
     }
   }
 }
@@ -57,11 +69,6 @@ h2 {
 h4 {
   font-weight: 300;
   font-size: 1.2em;
-}
-.icon-edit {
-  position: absolute;
-  right: 15px;
-  bottom: 12px;
 }
 .icon-add {
   position: absolute;

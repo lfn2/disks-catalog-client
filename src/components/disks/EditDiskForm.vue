@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500px">
+  <v-dialog v-model="dialog" :persistent="true" max-width="500px">
     <v-icon class="edit-icon" slot="activator">edit</v-icon>
     <v-card>
       <v-card-title>
@@ -22,11 +22,11 @@
 export default {
   Name: 'EditDiskForm',
   props: {
-    disk: Object
+    disk: Object,
+    dialog: Boolean
   },
   data() {
     return {
-      dialog: false,
       title: this.disk.title,
       artist: this.disk.artist
     }
@@ -41,7 +41,7 @@ export default {
       });
     },
     close() {
-      this.dialog = false;
+      this.$emit('closeEditDialog');
     }
   }
 }

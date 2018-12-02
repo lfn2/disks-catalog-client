@@ -6,9 +6,13 @@
       </v-toolbar-side-icon>
       <v-toolbar-title>{{collection.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>search</v-icon>
-      </v-btn>
+      <v-text-field
+        hide-details
+        append-icon="search"
+        single-line
+        @change="search"
+        v-model="searchText"
+      ></v-text-field>
       <v-btn icon @click="openAddDiskDialog">
         <v-icon>library_add</v-icon>
       </v-btn>
@@ -18,7 +22,7 @@
         <v-layout row wrap>
           <v-flex xs12>
             <DiskCardList
-              :disks="collection.disks"
+              :disks="disks"
               class="disk-card-list"
               :canRemove="true"
               @onRemoveDisk="removeDisk"/>
@@ -52,13 +56,16 @@ export default {
   data() {
     return {
       collection: null,
-      addDiskDialog: false
+      addDiskDialog: false,
+      searchText: "",
+      disks: []
     }
   },
 
   methods: {
     async getCollection() {
       this.collection = await DisksCatalogApi.getCollection(this.$route.params.id);
+      this.disks = this.collection.disks;
     },
 
     async addDisks(disks) {
@@ -89,6 +96,16 @@ export default {
 
     back() {
       this.$router.go(-1);
+    }
+  },
+
+  watch: {
+    searchText(val) {
+      this.disks = this.collection.disks.filter(disk => {
+        return this.searchText.length == 0
+          || disk.title.toLowerCase().includes(this.searchText.toLowerCase())
+          || disk.artist.toLowerCase().includes(this.searchText.toLowerCase());
+      });
     }
   },
 

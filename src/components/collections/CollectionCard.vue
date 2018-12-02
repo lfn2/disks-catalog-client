@@ -4,13 +4,14 @@
       <v-card
         slot-scope="{hover}"
         :class="`elevation-${hover ? 12 : 2}`"
-        class="mx-auto"
+        class="mx-auto clickable"
         color="primary"
+        @click="onClick"
       >
         <v-card-title>
           <h2 class="white--text">{{collection.name}}</h2>
           <v-spacer></v-spacer>
-          <v-menu right :nudge-right="18">
+          <v-menu right :nudge-right="18" @click.native.stop>
             <v-btn slot="activator" dark icon>
               <v-icon>more_vert</v-icon>
             </v-btn>
@@ -58,13 +59,23 @@ export default {
     },
 
     deleteCollection() {
-      this.$emit('deleteCollection', this.collection.id)
+      this.$emit('deleteCollection', this.collection.id);
+    },
+
+    onClick() {
+      this.$emit('onClick', this.collection.id);
     }
   }
 }
 </script>
 
 <style scoped>
+.clickable {
+  cursor: pointer;
+}
+.btn-menu {
+  z-index: 1000;
+}
 h2 {
   font-weight: bold;
 }

@@ -1,16 +1,12 @@
 <template>
   <div class="disks container">
-    <div class="disk-cards-container">
-      <div class="card" v-for="disk in disks" :key="disk.id">
-        <DiskCard :disk='disk' @deleteDisk="deleteDisk" @editDisk="editDisk"/>
-      </div>
-    </div>
+    <DiskCardList class="disk-card-list" :disks="disks" @onDeleteDisk="deleteDisk" @onEditDisk="editDisk"/>
     <CreateDiskForm @createDisk="createDisk"/>
   </div>
 </template>
 
 <script>
-import DiskCard from './DiskCard'
+import DiskCardList from './DiskCardList'
 import CreateDiskForm from './CreateDiskForm'
 import { mapState, mapActions } from 'vuex'
 
@@ -18,7 +14,7 @@ export default {
   name: 'Disks',
 
   components: {
-    DiskCard,
+    DiskCardList,
     CreateDiskForm
   },
 
@@ -33,14 +29,14 @@ export default {
     'editDisk'
   ]),
 
-  created() {
+  mounted() {
     this.getAllDisks();
   }
 }
 </script>
 
 <style scoped>
-.disk-cards-container {
+.disk-card-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;

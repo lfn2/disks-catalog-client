@@ -20,7 +20,7 @@ const actions = {
   async createCollection({commit}, params) {
     let collection = await api.createCollection(params);
     commit('addCollection', collection);
-  }
+  },
 }
 
 const mutations = {

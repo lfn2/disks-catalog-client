@@ -34,8 +34,13 @@ export default {
   async addDiskToCollection(diskId, collectionIds) {
     return await axios.post(`/disks/${diskId}/addToCollections`, collectionIds);
   },
-  
+
   async deleteCollection(id) {
     return await axios.delete(`/collections/${id}`);
+  },
+
+  async getCollection(id) {
+    let collection = await axios.get(`/collections/${id}`);
+    return collection.data;
   }
 }

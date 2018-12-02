@@ -49,12 +49,15 @@ export default {
     deleteDisk() {
       this.$emit("deleteDisk", this.disk.id);
     },
+    
     async editDisk(disk) {
       this.$emit("editDisk", disk);
     },
+
     openEditDialog() {
       this.dialog = true;
     },
+
     closeEditDialog() {
       this.dialog = false;
     }

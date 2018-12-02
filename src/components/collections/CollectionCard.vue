@@ -30,34 +30,14 @@
 </template>
 
 <script>
-import AddDiskDialog from './AddDiskDialog'
-
 export default {
   name: 'CollectionCard',
-
-  components: {
-    AddDiskDialog
-  },
 
   props: {
     collection: Object
   },
 
-  data() {
-    return {
-      addDiskDialog: false
-    }
-  },
-
   methods: {
-    openAddDiskDialog() {
-      this.addDiskDialog = true;
-    },
-
-    closeAddDiskDialog() {
-      this.addDiskDialog = false;
-    },
-
     deleteCollection() {
       this.$emit('deleteCollection', this.collection.id);
     },

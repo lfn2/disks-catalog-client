@@ -31,10 +31,6 @@ export default {
     return collection.data;
   },
 
-  async addDiskToCollection(diskId, collectionIds) {
-    return await axios.post(`/disks/${diskId}/addToCollections`, collectionIds);
-  },
-
   async deleteCollection(id) {
     return await axios.delete(`/collections/${id}`);
   },
@@ -42,5 +38,14 @@ export default {
   async getCollection(id) {
     let collection = await axios.get(`/collections/${id}`);
     return collection.data;
+  },
+
+  async addDisksToCollection(collection, disks) {
+    let updatedCollection =
+      await axios.post(`/collections/${collection.id}/addDisks`, {
+        disks: disks
+      });
+
+    return updatedCollection.data;
   }
 }

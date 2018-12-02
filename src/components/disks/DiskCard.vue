@@ -4,7 +4,7 @@
       <v-card-title>
         <h2 class="white--text">{{disk.title}}</h2>
         <v-spacer></v-spacer>
-        <v-menu>
+        <v-menu nudge-right="18">
           <v-btn slot="activator" dark icon>
             <v-icon>more_vert</v-icon>
           </v-btn>
@@ -69,10 +69,5 @@ h2 {
 h4 {
   font-weight: 300;
   font-size: 1.2em;
-}
-.icon-add {
-  position: absolute;
-  right: 50px;
-  bottom: 12px;
 }
 </style>

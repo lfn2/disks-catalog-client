@@ -9,7 +9,7 @@ import colors from 'vuetify/es5/util/colors';
 import axios from 'axios';
 import store from './store';
 
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = process.env.DISKS_CATALOG_API_URL;
 
 Vue.use(Vuetify, {
   theme: {

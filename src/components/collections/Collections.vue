@@ -5,7 +5,7 @@
         <CollectionCard :collection="collection" @deleteCollection="deleteCollection"/>
       </div>
     </div>
-    <CreateCollectionForm @createCollection="createCollection"/>
+    <CreateCollectionForm @createCollection='createCollection'/>
   </div>
 </template>
 
@@ -13,41 +13,50 @@
 import DisksCatalogApi from '@/services/DisksCatalogApi'
 import CollectionCard from './CollectionCard'
 import CreateCollectionForm from './CreateCollectionForm'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Collections',
+
   components: {
     CollectionCard,
     CreateCollectionForm
   },
-  data() {
-    return {
-      collections: []
-    }
-  },
-  methods: {
-    async getCollections() {
-      this.collections = await DisksCatalogApi.getCollections();
-    },
-    async createCollection(params) {
-      let collection = await DisksCatalogApi.createCollection(params);
 
-      this.collections.push(collection);
-    },
-    async deleteCollection(id) {
-      await DisksCatalogApi.deleteCollection(id);
+  computed: mapState({
+    collections: state => state.collections.all
+  }),
 
-      this.collections = this.collections.filter(collection => {
-        return collection.id != id;
-      })
-    },
-    addCollection(collection) {
-      this.collections.push(collection);
-    }
-  },
+  methods: mapActions('collections', [
+    'getAllCollections',
+    'deleteCollection',
+    'createCollection'
+  ]),
+
   created() {
-    this.getCollections();
+    this.getAllCollections();
   }
+  // methods: {
+  //   async getCollections() {
+  //     this.collections = await DisksCatalogApi.getCollections();
+  //   },
+  //   async createCollection(params) {
+  //     let collection = await DisksCatalogApi.createCollection(params);
+
+  //     this.collections.push(collection);
+  //   },
+  //   async deleteCollection(id) {
+  //     await DisksCatalogApi.deleteCollection(id);
+
+  //     this.collections = this.collections.filter(collection => {
+  //       return collection.id != id;
+  //     })
+  //   },
+  //   addCollection(collection) {
+  //     this.collections.push(collection);
+  //   }
+  // },
+
 }
 </script>
 

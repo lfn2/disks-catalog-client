@@ -5,29 +5,36 @@ export default {
     let response = await axios.get('/disks');
     return response.data;
   },
+
   async createDisk(params) {
     let disk = await axios.post('/disks', params);
     return disk.data;
   },
+
   async deleteDisk(id) {
     return await axios.delete(`/disks/${id}`);
   },
+
   async editDisk(disk) {
     let editedDisk = await axios.patch(`/disks/${disk.id}`, disk);
     return editedDisk.data;
   },
-  async getCollections() {
+
+  async getAllCollections() {
     let collections = await axios.get('/collections');
     return collections.data;
   },
+
   async createCollection(params) {
     console.log(params);
     let collection = await axios.post('/collections', params);
     return collection.data;
   },
+
   async addDiskToCollection(diskId, collectionIds) {
     return await axios.post(`/disks/${diskId}/addToCollections`, collectionIds);
   },
+  
   async deleteCollection(id) {
     return await axios.delete(`/collections/${id}`);
   }

@@ -12,27 +12,29 @@
 <script>
 import DiskCard from './DiskCard'
 import CreateDiskForm from './CreateDiskForm'
-import DisksCatalogApi from '@/services/DisksCatalogApi'
-import Vue from 'vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Disks',
+
   components: {
     DiskCard,
     CreateDiskForm
   },
+
   computed: mapState({
     disks: state => state.disks.all
   }),
+
   methods: mapActions('disks', [
-    'getAll',
+    'getAllDisks',
     'createDisk',
     'deleteDisk',
     'editDisk'
   ]),
+
   created() {
-    this.getAll();
+    this.getAllDisks();
   }
 }
 </script>

@@ -11,7 +11,6 @@
         color="white"
         append-icon="search"
         single-line
-        @change="search"
         v-model="searchText"
       ></v-text-field>
       <v-btn icon @click="openAddDiskDialog">

@@ -11,8 +11,9 @@ export default {
     return disk.data;
   },
 
-  async deleteDisk(id) {
-    return await axios.delete(`/disks/${id}`);
+  async deleteDisk(disk) {
+    let response = await axios.delete(`/disks/${disk.id}`);
+    return response.status == 204;
   },
 
   async editDisk(disk) {
@@ -49,8 +50,9 @@ export default {
     return updatedCollection.data;
   },
 
-  async removeDiskFromCollection(collection, diskId) {
-    let response = await axios.delete(`/collections/${collection.id}/disks/${diskId}`);
+  async removeDiskFromCollection(collection, disk) {
+    let response =
+      await axios.delete(`/collections/${collection.id}/disks/${disk.id}`);
     return response.status == 204;
   }
 }

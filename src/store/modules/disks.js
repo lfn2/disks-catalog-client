@@ -12,15 +12,18 @@ const actions = {
     let disks = await api.getAllDisks();
     commit('setDisks', disks);
   },
-  
+
   async createDisk({commit}, params) {
     let disk = await api.createDisk(params);
     commit('addDisk', disk)
   },
 
-  async deleteDisk({commit}, id) {
-    await api.deleteDisk(id);
-    commit('deleteDisk', id);
+  async deleteDisk({commit}, disk) {
+    let deleted = await api.deleteDisk(disk);
+
+    if (deleted) {
+      commit('deleteDisk', disk);
+    }
   },
 
   async editDisk({commit}, disk) {
@@ -38,9 +41,9 @@ const mutations = {
     state.all.push(disk);
   },
 
-  deleteDisk(state, id) {
+  deleteDisk(state, deletedDisk) {
     state.all = state.all.filter(disk => {
-      return disk.id != id;
+      return disk.id != deletedDisk.id;
     })
   },
 

@@ -1,6 +1,11 @@
 <template>
   <div class="disks container">
-    <DiskCardList class="disk-card-list" :disks="disks" @onDeleteDisk="deleteDisk" @onEditDisk="editDisk"/>
+    <DiskCardList class="disk-card-list"
+      :disks="disks"
+      :canEdit="true"
+      :canDelete="true"
+      @onDeleteDisk="deleteDisk"
+      @onEditDisk="editDisk"/>
     <CreateDiskDialog @createDisk="createDisk"/>
   </div>
 </template>

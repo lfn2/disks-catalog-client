@@ -5,8 +5,10 @@
         :disk="disk"
         :canEdit="canEdit"
         :canDelete="canDelete"
+        :canRemove="canRemove"
+        @editDisk="onEditDisk"
         @deleteDisk="onDeleteDisk"
-        @editDisk="onEditDisk"/>
+        @removeDisk="onRemoveDisk"/>
     </div>
   </div>
 </template>
@@ -25,11 +27,21 @@ export default {
     disks: Array,
     canEdit: {
       type: Boolean,
-      default: true
+      default: false
     },
     canDelete: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    canRemove: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    hasDisks: function() {
+      return this.disks.length > 0;
     }
   },
 
@@ -38,8 +50,12 @@ export default {
       this.$emit('onEditDisk', editedDisk);
     },
 
-    onDeleteDisk(id) {
-      this.$emit('onDeleteDisk', id);
+    onDeleteDisk(disk) {
+      this.$emit('onDeleteDisk', disk);
+    },
+
+    onRemoveDisk(disk) {
+      this.$emit('onRemoveDisk', disk);
     }
   }
 }

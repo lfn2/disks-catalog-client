@@ -20,8 +20,8 @@
             <DiskCardList
               :disks="collection.disks"
               class="disk-card-list"
-              :canEdit="false"
-              @onDeleteDisk="removeDisk"/>
+              :canRemove="true"
+              @onRemoveDisk="removeDisk"/>
           </v-flex>
         </v-layout>
       </v-container>
@@ -68,13 +68,13 @@ export default {
       this.closeAddDiskDialog();
     },
 
-    async removeDisk(diskId) {
+    async removeDisk(removedDisk) {
       let deleted =
-        await DisksCatalogApi.removeDiskFromCollection(this.collection, diskId);
+        await DisksCatalogApi.removeDiskFromCollection(this.collection, removedDisk);
 
       if (deleted) {
         this.collection.disks = this.collection.disks.filter(disk => {
-          return disk.id != diskId;
+          return disk.id != removedDisk.id;
         })
       }
     },
@@ -107,6 +107,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
-  margin-top: 60px;
+  min-height: 100px;
 }
 </style>

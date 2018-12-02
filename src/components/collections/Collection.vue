@@ -1,11 +1,16 @@
 <template>
   <div class="card" v-if="collection">
-    <v-toolbar color="secondary" dark>
-      <v-toolbar-side-icon @click="back">back</v-toolbar-side-icon>
+    <v-toolbar color="primary" dark>
+      <v-toolbar-side-icon @click="back">
+        <v-icon>arrow_back</v-icon>
+      </v-toolbar-side-icon>
       <v-toolbar-title>{{collection.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>search</v-icon>
+      </v-btn>
+      <v-btn icon @click="addDisks">
+        <v-icon>library_add</v-icon>
       </v-btn>
     </v-toolbar>
     <v-card>
@@ -43,6 +48,10 @@ export default {
       console.log(this.collection)
     },
 
+    addDisks() {
+
+    },
+
     back() {
       this.$router.go(-1);
     }
@@ -56,7 +65,7 @@ export default {
 
 <style scoped>
 .card{
-  max-width: 400px;
+  max-width: 700px;
   margin: auto;
 }
 </style>

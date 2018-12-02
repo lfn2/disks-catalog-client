@@ -21,7 +21,6 @@
           :disk="disk"
           @editDisk="editDisk"
           @closeEditDialog="closeEditDialog"/>
-        <AddToCollectionForm class="icon-add"/>
       </v-card-text>
     </v-card>
   </div>
@@ -29,13 +28,11 @@
 
 <script>
 import EditDiskDialog from './EditDiskDialog'
-import AddToCollectionForm from './AddToCollectionForm'
 
 export default {
   name: 'DiskCard',
   components: {
     EditDiskDialog,
-    AddToCollectionForm
   },
   props: {
     disk: Object

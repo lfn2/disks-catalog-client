@@ -16,7 +16,7 @@
       </v-card-title>
       <v-card-text>
         <h4 class="white--text">{{disk.artist}}</h4>
-        <EditDiskForm
+        <EditDiskDialog
           :dialog="dialog"
           :disk="disk"
           @editDisk="editDisk"
@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import EditDiskForm from './EditDiskForm'
+import EditDiskDialog from './EditDiskDialog'
 import AddToCollectionForm from './AddToCollectionForm'
 
 export default {
   name: 'DiskCard',
   components: {
-    EditDiskForm,
+    EditDiskDialog,
     AddToCollectionForm
   },
   props: {
@@ -49,7 +49,7 @@ export default {
     deleteDisk() {
       this.$emit("deleteDisk", this.disk.id);
     },
-    
+
     async editDisk(disk) {
       this.$emit("editDisk", disk);
     },

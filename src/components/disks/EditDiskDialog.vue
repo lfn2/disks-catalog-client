@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  Name: 'EditDiskForm',
+  Name: 'EditDiskDialog',
   props: {
     disk: Object,
     dialog: Boolean

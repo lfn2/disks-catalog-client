@@ -1,13 +1,13 @@
 <template>
   <div class="disks container">
     <DiskCardList class="disk-card-list" :disks="disks" @onDeleteDisk="deleteDisk" @onEditDisk="editDisk"/>
-    <CreateDiskForm @createDisk="createDisk"/>
+    <CreateDiskDialog @createDisk="createDisk"/>
   </div>
 </template>
 
 <script>
 import DiskCardList from './DiskCardList'
-import CreateDiskForm from './CreateDiskForm'
+import CreateDiskDialog from './CreateDiskDialog'
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -15,7 +15,7 @@ export default {
 
   components: {
     DiskCardList,
-    CreateDiskForm
+    CreateDiskDialog
   },
 
   computed: mapState({

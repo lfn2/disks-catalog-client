@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  Name: 'CreateDiskForm',
+  Name: 'CreateDiskDialog',
   data() {
     return {
       dialog: false,

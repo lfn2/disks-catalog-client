@@ -8,6 +8,7 @@
       <v-spacer></v-spacer>
       <v-text-field
         hide-details
+        color="white"
         append-icon="search"
         single-line
         @change="search"

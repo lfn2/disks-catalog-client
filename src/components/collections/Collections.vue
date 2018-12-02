@@ -35,28 +35,8 @@ export default {
 
   created() {
     this.getAllCollections();
+    this.$store.dispatch('disks/getAllDisks');
   }
-  // methods: {
-  //   async getCollections() {
-  //     this.collections = await DisksCatalogApi.getCollections();
-  //   },
-  //   async createCollection(params) {
-  //     let collection = await DisksCatalogApi.createCollection(params);
-
-  //     this.collections.push(collection);
-  //   },
-  //   async deleteCollection(id) {
-  //     await DisksCatalogApi.deleteCollection(id);
-
-  //     this.collections = this.collections.filter(collection => {
-  //       return collection.id != id;
-  //     })
-  //   },
-  //   addCollection(collection) {
-  //     this.collections.push(collection);
-  //   }
-  // },
-
 }
 </script>
 

@@ -1,6 +1,5 @@
 <template>
   <v-dialog v-model="dialog" :persistent="true" max-width="500px">
-    <v-icon class="edit-icon" slot="activator">edit</v-icon>
     <v-card>
       <v-card-title>
         <span class="headline">Edit Disk</span>

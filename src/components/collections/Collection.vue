@@ -17,7 +17,11 @@
       <v-container fluid grid-list-lg>
         <v-layout row wrap>
           <v-flex xs12>
-            <DiskCardList :disks="collection.disks" class="disk-card-list"/>
+            <DiskCardList
+              :disks="collection.disks"
+              class="disk-card-list"
+              :canEdit="false"
+              @onDeleteDisk="removeDisk"/>
           </v-flex>
         </v-layout>
       </v-container>
@@ -53,9 +57,8 @@ export default {
   },
 
   methods: {
-    async getCollection(id) {
-      this.collection = await DisksCatalogApi.getCollection(id);
-      console.log(this.collection)
+    async getCollection() {
+      this.collection = await DisksCatalogApi.getCollection(this.$route.params.id);
     },
 
     async addDisks(disks) {
@@ -63,6 +66,17 @@ export default {
         await DisksCatalogApi.addDisksToCollection(this.collection, disks);
 
       this.closeAddDiskDialog();
+    },
+
+    async removeDisk(diskId) {
+      let deleted =
+        await DisksCatalogApi.removeDiskFromCollection(this.collection, diskId);
+
+      if (deleted) {
+        this.collection.disks = this.collection.disks.filter(disk => {
+          return disk.id != diskId;
+        })
+      }
     },
 
     openAddDiskDialog() {
@@ -79,7 +93,7 @@ export default {
   },
 
   mounted () {
-    this.getCollection(this.$route.params.id);
+    this.getCollection();
   }
 }
 </script>

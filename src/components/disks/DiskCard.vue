@@ -4,13 +4,13 @@
       <v-card-title>
         <h2 class="white--text">{{disk.title}}</h2>
         <v-spacer></v-spacer>
-        <v-menu nudge-right="18">
+        <v-menu v-if="canEdit || canDelete" nudge-right="18">
           <v-btn slot="activator" dark icon>
             <v-icon>more_vert</v-icon>
           </v-btn>
           <v-list>
-            <v-list-tile @click="openEditDialog">edit</v-list-tile>
-            <v-list-tile @click="deleteDisk">delete</v-list-tile>
+            <v-list-tile v-if="canEdit" @click="openEditDialog">edit</v-list-tile>
+            <v-list-tile v-if="canDelete" @click="deleteDisk">delete</v-list-tile>
           </v-list>
         </v-menu>
       </v-card-title>
@@ -35,7 +35,15 @@ export default {
     EditDiskDialog,
   },
   props: {
-    disk: Object
+    disk: Object,
+    canEdit: {
+      type: Boolean,
+      default: true
+    },
+    canDelete: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {

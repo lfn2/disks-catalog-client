@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="card" v-for="disk in disks" :key="disk.id">
-      <DiskCard :disk='disk' @deleteDisk="onDeleteDisk" @editDisk="onEditDisk"/>
+      <DiskCard
+        :disk="disk"
+        :canEdit="canEdit"
+        :canDelete="canDelete"
+        @deleteDisk="onDeleteDisk"
+        @editDisk="onEditDisk"/>
     </div>
   </div>
 </template>
@@ -17,7 +22,15 @@ export default {
   },
 
   props: {
-    disks: Array
+    disks: Array,
+    canEdit: {
+      type: Boolean,
+      default: true
+    },
+    canDelete: {
+      type: Boolean,
+      default: true
+    }
   },
 
   methods: {

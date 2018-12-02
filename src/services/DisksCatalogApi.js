@@ -47,5 +47,10 @@ export default {
       });
 
     return updatedCollection.data;
+  },
+
+  async removeDiskFromCollection(collection, diskId) {
+    let response = await axios.delete(`/collections/${collection.id}/disks/${diskId}`);
+    return response.status == 204;
   }
 }

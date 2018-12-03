@@ -2,7 +2,7 @@
 
 > Web application for a disks catalog
 
-## Build Setup
+## Running the project
 
 ``` bash
 # install dependencies

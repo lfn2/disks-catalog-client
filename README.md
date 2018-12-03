@@ -13,6 +13,6 @@ npm install
 # API URL
 DISKS_CATALOG_API_URL=
 
-# serve with hot reload at localhost:8080
+# start application
 npm start
 ```

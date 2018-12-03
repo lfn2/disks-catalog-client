@@ -57,15 +57,27 @@ export default {
     return {
       collection: null,
       addDiskDialog: false,
-      searchText: "",
-      disks: []
+      searchText: ""
+    }
+  },
+
+  computed: {
+    disks: function() {
+      if (this.searchText.length == 0) {
+        return this.collection.disks;
+      }
+
+      return this.collection.disks.filter(disk => {
+        return this.searchText.length == 0
+          || disk.title.toLowerCase().includes(this.searchText.toLowerCase())
+          || disk.artist.toLowerCase().includes(this.searchText.toLowerCase());
+      });
     }
   },
 
   methods: {
     async getCollection() {
       this.collection = await DisksCatalogApi.getCollection(this.$route.params.id);
-      this.disks = this.collection.disks;
     },
 
     async addDisks(disks) {
@@ -96,16 +108,6 @@ export default {
 
     back() {
       this.$router.go(-1);
-    }
-  },
-
-  watch: {
-    searchText(val) {
-      this.disks = this.collection.disks.filter(disk => {
-        return this.searchText.length == 0
-          || disk.title.toLowerCase().includes(this.searchText.toLowerCase())
-          || disk.artist.toLowerCase().includes(this.searchText.toLowerCase());
-      });
     }
   },
 

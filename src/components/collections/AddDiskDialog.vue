@@ -60,10 +60,12 @@ export default {
   methods: {
     onClose() {
       this.$emit('onClose');
+      this.selected = []
     },
 
     onAdd() {
       this.$emit('onAdd', this.selected);
+      this.selected = []
     },
 
     ...mapActions('disks', ['getAllDisks'])

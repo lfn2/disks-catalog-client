@@ -39,12 +39,6 @@ export default {
     }
   },
 
-  computed: {
-    hasDisks: function() {
-      return this.disks.length > 0;
-    }
-  },
-
   methods: {
     onEditDisk(editedDisk) {
       this.$emit('onEditDisk', editedDisk);
